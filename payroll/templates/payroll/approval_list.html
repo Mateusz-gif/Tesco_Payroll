@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Payroll Approvals</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Period</th>
+            <th>Status</th>
+            <th>Approval Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for period in periods %}
+        <tr>
+            <td>{{ period.name }} ({{ period.month }}/{{ period.year }})</td>
+            <td>{{ period.status }}</td>
+            <td>
+                <a href="{% url 'approval_create' period.pk %}" class="btn btn-sm btn-success">Add Approval</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="3">No payroll periods found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

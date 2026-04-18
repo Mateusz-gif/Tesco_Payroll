@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Payroll Entries</h2>
+
+{% for group in user.groups.all %}
+    {% if group.name == 'Payroll Officer' %}
+        <a href="{% url 'payroll_entry_create' %}" class="btn btn-primary mb-3">Add Payroll Entry</a>
+    {% endif %}
+{% endfor %}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Period</th>
+            <th>Basic Pay</th>
+            <th>Bonus</th>
+            <th>Net Pay</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entry in entries %}
+        <tr>
+            <td>{{ entry.employee }}</td>
+            <td>{{ entry.payroll_period }}</td>
+            <td>{{ entry.basic_pay }}</td>
+            <td>{{ entry.bonus_amount }}</td>
+            <td>{{ entry.net_pay }}</td>
+            <td>
+                <a href="{% url 'payroll_entry_detail' entry.pk %}" class="btn btn-sm btn-info">View</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">No payroll entries found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

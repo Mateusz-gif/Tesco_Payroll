@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Payslips</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Reference</th>
+            <th>Period</th>
+            <th>Issue Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for payslip in payslips %}
+        <tr>
+            <td>{{ payslip.reference_code }}</td>
+            <td>{{ payslip.payroll_entry.payroll_period }}</td>
+            <td>{{ payslip.issue_date }}</td>
+            <td><a href="{% url 'my_payslip_detail' payslip.pk %}" class="btn btn-sm btn-info">View</a></td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">No payslips found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

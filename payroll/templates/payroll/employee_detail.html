@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Employee Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Name:</strong> {{ employee.first_name }} {{ employee.last_name }}</p>
+        <p><strong>Email:</strong> {{ employee.email }}</p>
+        <p><strong>Phone:</strong> {{ employee.phone }}</p>
+        <p><strong>Address:</strong> {{ employee.address }}</p>
+        <p><strong>Department:</strong> {{ employee.department }}</p>
+        <p><strong>Job Title:</strong> {{ employee.job_title }}</p>
+        <p><strong>Hire Date:</strong> {{ employee.hire_date }}</p>
+        <p><strong>Basic Salary:</strong> {{ employee.basic_salary }}</p>
+        <p><strong>Active:</strong> {{ employee.is_active }}</p>
+    </div>
+</div>
+{% endblock %}

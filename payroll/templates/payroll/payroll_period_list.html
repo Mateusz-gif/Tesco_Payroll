@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Payroll Periods</h2>
+
+{% if user.groups.all %}
+    {% for group in user.groups.all %}
+        {% if group.name == 'Payroll Officer' %}
+            <a href="{% url 'payroll_period_create' %}" class="btn btn-primary mb-3">Add Payroll Period</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Status</th>
+            <th>Dates</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for period in periods %}
+        <tr>
+            <td>{{ period.name }}</td>
+            <td>{{ period.month }}</td>
+            <td>{{ period.year }}</td>
+            <td>{{ period.status }}</td>
+            <td>{{ period.start_date }} to {{ period.end_date }}</td>
+            <td>
+                {% for group in user.groups.all %}
+                    {% if group.name == 'Payroll Officer' %}
+                        <a href="{% url 'payroll_period_update' period.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">No payroll periods found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

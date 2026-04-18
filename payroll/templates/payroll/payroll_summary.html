@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Payroll Summary</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Payroll Period</th>
+            <th>Employees</th>
+            <th>Total Basic Pay</th>
+            <th>Total Bonus</th>
+            <th>Total Tax</th>
+            <th>Total Pension</th>
+            <th>Total Other Deductions</th>
+            <th>Total Net Pay</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in summary_rows %}
+        <tr>
+            <td>{{ row.period }}</td>
+            <td>{{ row.employee_count }}</td>
+            <td>{{ row.total_basic }}</td>
+            <td>{{ row.total_bonus }}</td>
+            <td>{{ row.total_tax }}</td>
+            <td>{{ row.total_pension }}</td>
+            <td>{{ row.total_other }}</td>
+            <td>{{ row.total_net }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="8">No summary data found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

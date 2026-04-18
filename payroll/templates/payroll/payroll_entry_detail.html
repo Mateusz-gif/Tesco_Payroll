@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Payroll Entry Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Employee:</strong> {{ entry.employee }}</p>
+        <p><strong>Payroll Period:</strong> {{ entry.payroll_period }}</p>
+        <p><strong>Basic Pay:</strong> {{ entry.basic_pay }}</p>
+        <p><strong>Overtime Hours:</strong> {{ entry.overtime_hours }}</p>
+        <p><strong>Overtime Amount:</strong> {{ entry.overtime_amount }}</p>
+        <p><strong>Bonus Amount:</strong> {{ entry.bonus_amount }}</p>
+        <p><strong>Tax Amount:</strong> {{ entry.tax_amount }}</p>
+        <p><strong>Pension Amount:</strong> {{ entry.pension_amount }}</p>
+        <p><strong>Other Deductions:</strong> {{ entry.other_deductions }}</p>
+        <p><strong>Net Pay:</strong> {{ entry.net_pay }}</p>
+    </div>
+</div>
+{% endblock %}

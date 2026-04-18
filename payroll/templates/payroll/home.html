@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-4 bg-light rounded">
+    <h1>Tesco Payroll Management System</h1>
+    <p>This system is a simple Django website for managing employees, payroll entries, approvals, and payslips.</p>
+
+    {% if user.is_authenticated %}
+        <p><strong>Logged in as:</strong> {{ user.username }}</p>
+
+        <h4>Your role(s)</h4>
+        <ul>
+            {% for group in user.groups.all %}
+                <li>{{ group.name }}</li>
+            {% empty %}
+                <li>No role assigned</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Please log in to continue.</p>
+    {% endif %}
+</div>
+{% endblock %}
